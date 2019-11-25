@@ -1,7 +1,7 @@
 <template >
     <div class="col-md-12">
       <div v-for="post in categoryItemList" v-bind:key="post.id"  class="post-entry-horzontal">
-        <a v-bind:href="page + post.id" style="width:100%;" >
+        <a v-bind:href="page + post.url" style="width:100%;" >
           <div class="image element-animate" data-animate-effect="fadeIn" v-bind:style="{ 'background-image': 'url(' + $imagesUrl + post.imgsrc + ')' }"></div>
           <span class="text">
             <div class="post-meta">
