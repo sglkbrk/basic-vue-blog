@@ -36,6 +36,9 @@
         watch:{
             categoryId (){
                 this.getCategoryPosts();
+            },
+            $route (){
+                this.getCategoryPosts();
             }
         },
         methods:{

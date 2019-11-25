@@ -4,7 +4,7 @@
           <div class="row pt-5">
             <div class="col-12 text-center">
               <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" v-on:click="onMobilHeader" role="button" aria-expanded="false" aria-controls="navbarMenu"><span class="burger-lines"></span></a>
-              <h1 class="site-logo"><a href="/">burak Sağlık</a></h1>
+              <h1 class="site-logo"><a href="/">Burak</a></h1>
             </div>
           </div>
         </div>
