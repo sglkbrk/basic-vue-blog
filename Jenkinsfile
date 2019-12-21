@@ -1,9 +1,4 @@
 node {
-    stage('Git Pull') {
-        git branch: 'master',
-        credentialsId: '7fa7564c-3e50-4b8a-8988-83d2bdf242f6',
-        url: 'https://github.com/sglkbrk/vue-blog.git'
-    }
     stage('SonarQube analysis') {
         withSonarQubeEnv() {
             def sonarqubeScannerHome = tool name: 'SonarScanner 4.0'
