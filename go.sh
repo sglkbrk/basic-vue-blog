@@ -1,4 +1,6 @@
+echo api service build..
+/usr/bin/docker-compose build
 echo api service stopping..
-docker-compose down
+/usr/bin/docker-compose down
 echo api service startinf..
-docker-compose up -d --build
+/usr/bin/docker-compose  docker-compose up -d
