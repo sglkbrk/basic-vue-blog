@@ -3,7 +3,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6">
-              <h2 class="mb-4">Tüm İçerikler</h2>
+              <h2 style="marginTop:5px" class="mb-4">Tüm İçerikler</h2>
             </div>
           </div>
           <div class="row blog-entries">

@@ -22,7 +22,7 @@
             </div>
             <div class="row">
               <div class="col-md-6 form-group">
-                <input v-on:click="sendMessage" value="Gönder" class="btn btn-primary">
+                <input type="button" v-on:click="sendMessage" value="Gönder" class="btn btn-primary">
               </div>
             </div>
         </form>

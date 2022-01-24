@@ -4,7 +4,7 @@
           <div class="row pt-5">
             <div class="col-12 text-center">
               <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" v-on:click="onMobilHeader" role="button" aria-expanded="false" aria-controls="navbarMenu"><span class="burger-lines"></span></a>
-              <h1 class="site-logo"><a href="/">burak Saglik</a></h1>
+              <h1 class="site-logo"><a href="/">Fivori</a></h1>
             </div>
           </div>
         </div>
@@ -25,7 +25,7 @@
                   <a class="nav-link dropdown-toggle"   id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategoriler</a>
                   <div v-bind:class="hover"  aria-labelledby="dropdown05">
                     <div v-for="ctg in categoryList" v-bind:key="ctg.id"  >
-                      <a v-bind:href="page + ctg.url"  v-if="ctg.size > 0" class="dropdown-item">{{ctg.title}}</a>
+                      <a v-bind:href="page + ctg.slug"  class="dropdown-item">{{ctg.title}}</a>
                     </div>
                     
                   </div>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+  import PostService from "../../service/PostService"
   export default {
     name: 'header',
     data() {
@@ -62,13 +63,13 @@
              else deneme.className = "collapse navbar-collapse"
         },
         getData:function () {
-            fetch(this.$serviceUrl+'CategoryService/getAllCategory ', {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(json =>{
-                this.categoryList = json;
-            })
+          var query = {
+            'type':"category", 
+          }
+          var props = "slug,title"
+          PostService.getMedhod(query,props).then(res =>{
+              this.categoryList = res.objects
+          })
         }
     },
     created: function () {

@@ -1,9 +1,9 @@
 <template >
   <div class="col-md-12">
-    <h2 class="mb-4">Merhaba Ben Burak SAĞLIK</h2>
-    <p class="mb-5"><img v-bind:src="aboutImageUrl" alt="Burak Sağlık" class="img-fluid"></p>
-    <p>Merhaba Kişisel Web Siteme hoş geldiniz. Blog tutmak her insan için mental açıdan faydalı bir eylemdir. İnsanlar bir şeyler yazarak, paylaşarak kendilerini daha iyi hissederler .Bende blog sayeyinde sizlere bilgi birikimi ve tecrüberimi sizlere aktamya çalışacam . </p>
-    <p> Yazılım ile üniversite birinci sınıfta tanıştım karmaşık yapısı ve olduça fazla teknik bilgi içermesi ilgimi  çekti. Üniversite de bir yazılım firmasında çalışmaya başladıktan sonra daha fazla bilgi edinmeye ve kendimi geliştirmeye başladım . Halen bu yazılım firmasında frontEnd takım lideri olarak çalışmaktayım her geçen gün daha fazla şey öğrenmeye ve bunları paylaşmak için başladığım bu blog sayfası umarım hem sizin hemde benim için iyi olur  </p>
+    <h2 class="mb-4">Merhaba Ben {{user.title}}</h2>
+    <!-- <p class="mb-5"><img v-bind:src="aboutImageUrl" alt="Burak Sağlık" class="img-fluid"></p> -->
+    <div class="post-content-body" v-html="user.content">
+    </div>
     <p style="margin-top:25px;">
         <progressBar text="Javascript" value="90"></progressBar>
         <progressBar text="JQuery" value="85"></progressBar>
@@ -30,6 +30,7 @@
 <script>
 
     import progressBar from "../../global/progressBar.vue"
+    import PostService from "../../../service/PostService"
 
     export default {
         name: 'aboutContent2',
@@ -38,9 +39,23 @@
         },
         data(){
             return{
-                aboutImageUrl:this.$imagesUrl +'about.jpeg'
+                aboutImageUrl:this.$imagesUrl +'about.jpeg',
+                user:{}
             }
         },
+        created: function () {
+            this.getUser();
+        },
+        methods:{
+            getUser:function function_name() {
+                var query = {
+                    id:"61eece27584e8c0008f4b323"
+                }
+                PostService.getMedhod(query,"",false).then(res =>{
+                    this.user = res.objects[0];
+                })
+          }
+        }
 
     }
 </script>

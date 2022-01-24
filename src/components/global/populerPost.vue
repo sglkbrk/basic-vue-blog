@@ -3,13 +3,13 @@
         <h3 class="heading">Popular İçerikler</h3>
         <div class="post-entry-sidebar">
           <ul>
-            <li v-for="post in popularPostList" v-bind:key="post.id"  >
-              <a v-bind:href="page + post.url" >
-                <img v-bind:src="$imagesUrl + post.imgsrc"  alt="Image placeholder" class="mr-4">
+            <li v-for="post in popularPostList" v-bind:key="post.slug"  >
+              <a v-bind:href="page + post.slug" >
+                <img v-bind:src="post.metadata.image.url"  alt="Image placeholder" class="mr-4">
                 <div class="text">
                   <h4>{{post.title}}</h4>
                   <div class="post-meta">
-                    <span class="mr-2">{{ moment(post.date,"YYYYMMDD").format('MMM DD, YYYY') }}</span>
+                    <span class="mr-2">{{ moment(post.metadata.author.modified_at).format('MMM DD, YYYY') }}</span>
                   </div>
                 </div>
               </a>
@@ -21,6 +21,7 @@
 
 <script>
   import * as moment from 'moment'
+  import PostService from "../../service/PostService"
   export default {
     name: 'populerPost',
     data(){
@@ -36,13 +37,12 @@
     },
     methods:{
         getData:function () {
-            fetch(this.$serviceUrl+'PostService/getPopularPost ', {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(json =>{
-                this.popularPostList = json;
-            })
+           var query = {
+            'type':"posts", 
+          }
+          PostService.getMedhod(query).then(res =>{
+              this.popularPostList = res.objects
+          })
         }
     }
   }

@@ -3,13 +3,14 @@
         <h3 class="heading">Kategoriler</h3>
         <ul class="categories">
             <li  v-for="ctg in categoryList" v-bind:key="ctg.id"  >
-                <a v-if="ctg.size > 0"  v-bind:href="page + ctg.url"  >{{ctg.title}}<span>({{ctg.size}})</span></a>
+                <a  v-bind:href="page + ctg.slug">{{ctg.title}}<span></span></a>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
+    import PostService from "../../service/PostService"
   export default {
     name: 'postCatgories',
     data(){
@@ -22,13 +23,13 @@
         this.getData();
     },
     methods:{
-        getData:function () {
-            fetch(this.$serviceUrl+'CategoryService/getAllCategory ', {
-                method: 'GET'
-            })
-            .then(response => response.json())
-            .then(json =>{
-                this.categoryList = json;
+         getData:function () {
+            var query = {
+                'type':"category", 
+            }
+            var props = "id,slug,title"
+            PostService.getMedhod(query,props).then(res =>{
+                this.categoryList = res.objects
             })
         }
     }

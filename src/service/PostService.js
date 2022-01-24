@@ -1,24 +1,20 @@
-
 import Provider from "../service/Provider.js"
 
-export default class PostService extends Provider {
-
-    getPost (id) {
-        return new Promise(
-            this.ajaxGet(this.postServicename, "getPost", id).then(res =>{
-                Promise.
+var PostService =  {
+    getMedhod(query,props,cache,skip) {
+        var limit = ""
+        if(skip){
+            skip = (skip - 1) * 5
+            limit = skip + 5
+        }  
+        return new Promise((resolve) => {
+            Provider.get("https://api.cosmicjs.com/v2/buckets",query,props,cache,skip,limit).then(res=>{
+                resolve(res)
             })
-        );
-    }
-    getCategoryPosts (id) {
-        return new Promise(
-            this.ajaxGet(this.postServicename, "getCategoryPosts", id).then(function (res) {
-                 resolve(value);
-            })
-        );
+        });
     }
 }
-
-module.exports = {
-    PostService: PostService
-}
+export default PostService;
+// module.exports = {
+//     PostService: PostService
+// }

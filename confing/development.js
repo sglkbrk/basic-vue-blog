@@ -1,3 +1,3 @@
 export default {
-  API_URL: 'http://localhost:8080/'
+    API_URL: 'https://api.cosmicjs.com/v2/'
 }

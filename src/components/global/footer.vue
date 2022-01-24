@@ -5,7 +5,7 @@
         <div class="col-md-4">
           <h3>Hakkımda</h3>
           <p class="mb-4">
-            <img v-bind:src="host" alt="Image placeholder" class="img-fluid">
+            <img v-if="user && user.metadata && user.metadata.authorimg" v-bind:src="user.metadata.authorimg.url" alt="Image placeholder" class="img-fluid">
           </p>
 
           <p>İş hayatım ve sosyal hayatımdaki tecrübelerim. <a href="/about">Devam</a></p>
@@ -13,7 +13,7 @@
         <div class="col-md-6 ml-auto">
           <div class="row">
             <div class="col-md-7">
-              <h3>Son İçerikler</h3>
+              <!-- <h3>Son İçerikler</h3> -->
               <div class="post-entry-sidebar">
                 <ul>
                  <!--  <li>
@@ -63,11 +63,28 @@
     </footer>
 </template>
 <script>
+  import PostService from "../../service/PostService"
   export default {
-    name: 'footer',
+    name: 'sidebarWidgets',
     data(){
         return{
-            host:this.$imagesUrl +'user.jpeg'
+            user:{},
+        }
+    },
+    created: function () {
+        this.getUser();
+    },
+    methods:{
+        onOpenAbout:function () {
+            this.$router.push({ path: '/about' });
+        },
+        getUser:function function_name() {
+          var query = {
+            'id':"61ee9499d63224000897a045", 
+          }
+          PostService.getMedhod(query).then(res =>{
+              this.user = res.objects[0]
+          })
         }
     },
   }

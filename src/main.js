@@ -26,21 +26,21 @@ Vue.prototype.$serviceUrl = config.API_URL
 Vue.prototype.$imagesUrl = config.API_URL + 'FileService/downloadFile/'
 
 const router = new VueRouter({
-  mode: 'history',
-  routes: [
-    {path: '/', component: home},
-    {path: '/home:id', component: home},
-    {path: '/detay/:id', component: detay},
-    {path: '/category/:id', component: category},
-    {path: '/category/:id/:pagno', component: category},
-    {path: '/contact', component: contact},
-    {path: '/about', component: about},
-    {path: '/searchPost/:text', component: searchPost},
-    // {path: '/yazi-detay/:id', component: PostDetail}
-  ]
+    mode: 'history',
+    routes: [
+        {path: '/', component: home},
+        {path: '/home:skip', component: home},
+        {path: '/detay/:id', component: detay},
+        {path: '/category/:id', component: category},
+        {path: '/category/:id/:skip', component: category},
+        {path: '/contact', component: contact},
+        {path: '/about', component: about},
+        {path: '/searchPost/:text', component: searchPost},
+        // {path: '/yazi-detay/:id', component: PostDetail}
+    ]
 })
 
 new Vue({
-  router,
-  render: h => h(App)
+    router,
+    render: h => h(App)
 }).$mount('#app')

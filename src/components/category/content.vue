@@ -9,7 +9,8 @@
               </div>
               <div class="row blog-entries">
                 <div class="col-md-12 col-lg-8 main-content">
-                  <p >{{categoryItem.message}}</p>
+                  <div class="post-content-body" v-html="categoryItem.content">
+                  </div>
                   <div class="row mb-5 mt-5">
                       <categotyPost v-bind:categoryId="categoryItem.id"> </categotyPost>
                   </div>
@@ -61,12 +62,12 @@
           getCategoryPosts:function function_name() {
               var params = this.$route.params
               if (!params.id) return;
-              fetch(this.$serviceUrl+'CategoryService/getCategory/' + params.id , {
+              fetch("https://api.cosmicjs.com/v2/buckets/aae94e00-7cee-11ec-beab-9dd501a9929f/objects?query=%7B%22slug%22%3A%22" +params.id+ "%22%7D&pretty=true&read_key=yYSE7iOjsZUlAgvtuhAbUAPOFktp0oL8BTqBE1LSBPLkuwqd7k&props=id,slug,title,content,metadata," , {
                   method: 'GET'
               })
                   .then(response => response.json())
                   .then(json =>{
-                  this.categoryItem = json
+                  this.categoryItem = json.objects[0]
               })
           }
       }
