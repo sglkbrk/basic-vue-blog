@@ -5,7 +5,7 @@
                 <img v-bind:src="item.metadata.image.url" style="">
                 <div class="blog-content-body">
                     <div class="post-meta">
-                        <span class="author mr-2"><img v-bind:src="item.metadata.author.metadata.authorimg.imgix_url"
+                        <span v-if="item.metadata.author.metadata && item.metadata.author.metadata.authorimg" class="author mr-2"><img v-bind:src="item.metadata.author.metadata.authorimg.imgix_url"
                                 alt="Colorlib"> {{item.metadata.author.title}}</span>&bullet;
                         <span class="mr-2">{{ moment(item.metadata.author.modified_at).format('MMM DD, YYYY') }}</span>
                         &bullet;

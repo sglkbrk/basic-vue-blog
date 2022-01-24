@@ -39,6 +39,7 @@
         getData:function () {
            var query = {
             'type':"posts", 
+            'metadata.popular':true, 
           }
           PostService.getMedhod(query).then(res =>{
               this.popularPostList = res.objects

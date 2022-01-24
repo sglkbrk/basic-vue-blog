@@ -12,6 +12,13 @@ var PostService =  {
                 resolve(res)
             })
         });
+    },
+    postMedhod(json) {
+        return new Promise((resolve) => {
+            Provider.post("https://api.cosmicjs.com/v2/buckets",json).then(res=>{
+                resolve(res)
+            })
+        });
     }
 }
 export default PostService;

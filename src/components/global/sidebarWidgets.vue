@@ -36,7 +36,7 @@
       },
       getUser: function function_name() {
         var query = {
-          'id': "61ee9499d63224000897a045",
+          'id': "61eece27584e8c0008f4b323",
         }
         PostService.getMedhod(query,"",false).then(res => {
           this.user = res.objects[0]
