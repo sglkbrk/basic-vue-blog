@@ -26,7 +26,7 @@
         name: 'post',
         data() {
             return {
-                page: "/detay/",
+                page: "/",
                 moment: moment,
                 postItems: []
             }

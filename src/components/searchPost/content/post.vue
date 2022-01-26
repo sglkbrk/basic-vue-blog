@@ -27,7 +27,7 @@
         data(){
             return{
                 moment: moment,
-                page:"/detay/",
+                page:"/",
                 postItems : []
             }
         },

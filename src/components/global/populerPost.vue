@@ -26,7 +26,7 @@
     name: 'populerPost',
     data(){
         return {
-          page:"/detay/",
+          page:"/",
           moment:moment,
           popularPostList: [],
         }

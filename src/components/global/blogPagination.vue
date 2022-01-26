@@ -37,7 +37,7 @@
       routering: function (url) {
         var params = this.$route.params
         if (params.skip == url) return
-        this.$router.push('/home' + url);
+        this.$router.push('/page/' + url);
         window.scrollTo(0, 0);
       },
       backpage: function () {

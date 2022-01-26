@@ -53,19 +53,16 @@
       getCategoryPosts: function function_name() {
         var params = this.$route.params
         if (!this.categoryId) return;
+        // curl '$endpoint&query={"metadata.json_data":{"is_awesome":true,"other_data":{"nested":"yep"}}}'
         var query = {
-          "$or":[
-            {"metadata.subcategory":this.categoryId},
-            {"metadata.category":this.categoryId}
-          ],
-          type: 'posts'
+          type: 'posts',
+          'metadata.tags':{"slug":params.id}
         }
         var props = "id,slug,title,metadata,"
-        var skip = params.skip ? params.skip : 1;
-        this.updateSpinnerShow(true);
-        PostService.getMedhod(query, props, "", skip).then(res => {
+        // this.updateSpinnerShow(true);
+        PostService.getMedhod(query, props).then(res => {
           this.categoryItemList = res.objects
-          this.updateSpinnerShow(false);
+          // this.updateSpinnerShow(false);
         })
       },
     }

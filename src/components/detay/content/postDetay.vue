@@ -13,7 +13,7 @@
           </div>
           <div class="pt-5">
             <p v-if="item.metadata.tags">Tags:
-                <a  v-for="tag in item.metadata.tags" v-bind:key="tag.id"  v-bind:href="categoryPage + tag.slug"  >{{tag.title}}</a>
+                <a  v-for="tag in item.metadata.tags" v-bind:key="tag.id"  v-bind:href="tagsPage + tag.slug"  >{{tag.title}}</a>
             </p>
           </div>
 
@@ -35,6 +35,7 @@
         data(){
             return{
                 categoryPage: "/category/",
+                tagsPage: "/tags/",
                 moment: moment,
                 item :{}
             }

@@ -36,7 +36,7 @@
       return {
         moment: moment,
         bannerItem: "",
-        page: "/detay/",
+        page: "/",
         pageCategory:"/category/"
       }
     },
