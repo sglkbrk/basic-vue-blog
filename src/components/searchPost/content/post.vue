@@ -20,7 +20,8 @@
 
 <script>
     import * as moment from 'moment'
-     import PostService from "../../../service/PostService"
+    import {mapActions } from 'vuex';
+    import PostService from "../../../service/PostService"
     export default {
         name: 'contentTop',
         data(){
@@ -40,14 +41,19 @@
             }
         },
         methods:{
+          ...mapActions([
+                'updateSpinnerShow'
+          ]),
           getSearchData:function function_name() {
             var params = this.$route.params
             var query = {
               'content':{"$regex":params.text,"$options":"i"},
               type:'posts'
             }
+            this.updateSpinnerShow(true);
             PostService.getMedhod(query).then(res =>{
                 this.postItems = res.objects
+                this.updateSpinnerShow(false);
             })
           }
       }

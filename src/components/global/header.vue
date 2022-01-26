@@ -21,16 +21,27 @@
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="#">Yazılım</a>
                 </li> -->
+                <li class="nav-item dropdown" @mouseover="hover2 = 'dropdown-menu show'" @mouseleave="hover2 = 'dropdown-menu'">
+                  <a class="nav-link dropdown-toggle"   id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seyahat Ve Gezi</a>
+                  <div v-bind:class="hover2"  aria-labelledby="dropdown04">
+                    <div v-for="ctg in categoryList" v-bind:key="ctg.id"  >
+                      <a v-if="ctg.metadata.masterctgry.slug == 'seyahat-ve-gezi' " v-bind:href="page + ctg.slug"  class="dropdown-item">{{ctg.title}}</a>
+                    </div>
+                  </div>
+                </li>
                 <li class="nav-item dropdown" @mouseover="hover = 'dropdown-menu show'" @mouseleave="hover = 'dropdown-menu'">
-                  <a class="nav-link dropdown-toggle"   id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategoriler</a>
+                  <a class="nav-link dropdown-toggle"   id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Yazılım</a>
                   <div v-bind:class="hover"  aria-labelledby="dropdown05">
                     <div v-for="ctg in categoryList" v-bind:key="ctg.id"  >
-                      <a v-bind:href="page + ctg.slug"  class="dropdown-item">{{ctg.title}}</a>
+                      <a v-if="ctg.metadata.masterctgry.slug == 'yazlm'" v-bind:href="page + ctg.slug"  class="dropdown-item">{{ctg.title}}</a>
                     </div>
-                    
                   </div>
-
                 </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">Galery</a>
+                </li>
+                
                 <li class="nav-item">
                   <a class="nav-link" href="/about">Hakkımda</a>
                 </li>
@@ -52,6 +63,7 @@
     data() {
       return {
         hover: "dropdown-menu",
+        hover2: "dropdown-menu",
         page: "/category/",
         categoryList: []
       };
@@ -64,10 +76,9 @@
         },
         getData:function () {
           var query = {
-            'type':"category", 
+            'type':"subcategorys", 
           }
-          var props = "slug,title"
-          PostService.getMedhod(query,props).then(res =>{
+          PostService.getMedhod(query).then(res =>{
               this.categoryList = res.objects
           })
         }

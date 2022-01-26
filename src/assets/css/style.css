@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .wrap {
-    max-width: 1250px;
+    max-width: 1450px;
     margin: 0 auto;
     background: #fff;
     -webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.1);
@@ -222,6 +222,19 @@ header .navbar .dropdown-menu a {
 .category {
     display: inline-block;
     background: #6610f2;
+    padding: 2px 8px;
+    line-height: 1.5;
+    font-size: 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    color: #fff !important;
+    margin-right: 10px;
+    letter-spacing: .2em;
+}
+
+.subcategory {
+    display: inline-block;
+    background: #1f40d3;
     padding: 2px 8px;
     line-height: 1.5;
     font-size: 12px;

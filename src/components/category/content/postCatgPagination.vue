@@ -56,7 +56,7 @@
       getData: function () {
         if (!this.categoryId) return;
         var query = {
-          'metadata.category':this.categoryId, 
+          'metadata.subcategory':this.categoryId, 
           type:'posts'
         }
         var props = "id"

@@ -35,6 +35,7 @@
     import populerPost from "../global/populerPost.vue"
     import sidebarWidgets from "../global/sidebarWidgets.vue"
     import postCatgPagination from "./content/postCatgPagination.vue"
+    import PostService from "../../service/PostService"
     export default {
         name: 'content2',
         components: {
@@ -60,15 +61,13 @@
         },
         methods:{
           getCategoryPosts:function function_name() {
-              var params = this.$route.params
-              if (!params.id) return;
-              fetch("https://api.cosmicjs.com/v2/buckets/aae94e00-7cee-11ec-beab-9dd501a9929f/objects?query=%7B%22slug%22%3A%22" +params.id+ "%22%7D&pretty=true&read_key=yYSE7iOjsZUlAgvtuhAbUAPOFktp0oL8BTqBE1LSBPLkuwqd7k&props=id,slug,title,content,metadata," , {
-                  method: 'GET'
-              })
-                  .then(response => response.json())
-                  .then(json =>{
-                  this.categoryItem = json.objects[0]
-              })
+            var params = this.$route.params
+            var query = {
+                slug: params.id
+            }
+            PostService.getMedhod(query).then(res => {
+                this.categoryItem = res.objects[0]
+            })
           }
       }
   }

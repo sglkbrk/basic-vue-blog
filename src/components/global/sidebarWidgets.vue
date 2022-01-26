@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-box">
+  <div  class="sidebar-box">
     <div class="bio text-center">
       <img v-if="user" v-bind:src="user.metadata.authorimg.url" alt="Image Placeholder" class="img-fluid">
       <div class="bio-body">

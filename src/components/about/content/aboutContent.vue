@@ -31,7 +31,7 @@
 
     import progressBar from "../../global/progressBar.vue"
     import PostService from "../../../service/PostService"
-
+    import {mapActions } from 'vuex';
     export default {
         name: 'aboutContent2',
         components:{
@@ -47,12 +47,17 @@
             this.getUser();
         },
         methods:{
+            ...mapActions([
+                'updateSpinnerShow'
+            ]),
             getUser:function function_name() {
                 var query = {
                     id:"61eece27584e8c0008f4b323"
                 }
+                this.updateSpinnerShow(true);
                 PostService.getMedhod(query,"",false).then(res =>{
                     this.user = res.objects[0];
+                    this.updateSpinnerShow(false);
                 })
           }
         }

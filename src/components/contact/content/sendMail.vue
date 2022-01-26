@@ -22,7 +22,8 @@
     </div>
     <div class="row">
       <div class="col-md-6 form-group">
-        <input type="button" v-on:click="sendMessage" value="Gönder" class="btn btn-primary">
+        <dotsSpinner v-if="spinnerShow" style="margin-top:15px"/>
+        <input v-if="!spinnerShow" type="button" v-on:click="sendMessage" value="Gönder" class="btn btn-primary">
       </div>
     </div>
   </form>
@@ -31,8 +32,12 @@
 
 <script>
   import PostService from "../../../service/PostService"
+  import dotsSpinner from '../../global/dotsSpinner.vue'
   export default {
     name: 'sendMail',
+    components:{
+      dotsSpinner
+    },
     data() {
       return {
         messageItem: {
@@ -40,7 +45,8 @@
           email: "",
           telno: "",
           message: "",
-        }
+        },
+        spinnerShow: false,
       }
     },
     methods: {
@@ -82,6 +88,7 @@
               }
             ]
           }
+          this.spinnerShow = true;
           PostService.postMedhod(json).then(res => {
             if (res && res.object && res.object.id) {
               alert("Mesaj Göderildi")
@@ -90,6 +97,7 @@
               this.messageItem.email = "";
               this.messageItem.telno = "";
             }
+            this.spinnerShow = false ;
           })
         } else alert("İşaretli Alanları doldurunuz.")
       },

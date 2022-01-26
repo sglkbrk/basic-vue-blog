@@ -1,6 +1,6 @@
 <template>
     <div class="sidebar-box">
-        <h3 class="heading">Kategoriler</h3>
+        <h3 class="heading">Tüm Kategoriler</h3>
         <ul class="categories">
             <li  v-for="ctg in categoryList" v-bind:key="ctg.id"  >
                 <a  v-bind:href="page + ctg.slug">{{ctg.title}}<span></span></a>
@@ -25,7 +25,7 @@
     methods:{
          getData:function () {
             var query = {
-                'type':"category", 
+                'type':"subcategorys", 
             }
             var props = "id,slug,title"
             PostService.getMedhod(query,props).then(res =>{

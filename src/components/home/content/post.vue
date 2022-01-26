@@ -12,6 +12,7 @@
                         <span class="ml-2"><span class="fa fa-comments"></span> 10</span>
                     </div>
                     <h2>{{item.title}}</h2>
+                    <p>{{item.metadata.description}}</p>
                 </div>
             </a>
         </div>
@@ -19,6 +20,7 @@
 </template>
 <script>
     import * as moment from 'moment'
+    import {mapActions } from 'vuex';
     import PostService from "../../../service/PostService"
     export default {
         name: 'post',
@@ -39,14 +41,19 @@
             this.moment.locale('tr');
         },
         methods: {
+            ...mapActions([
+                'updateSpinnerShow'
+            ]),
             getData: function function_name() {
                 var params = this.$route.params
                 var skip = params.skip ? params.skip : 1;
                 var query = {
                     'type': "posts",
                 }
+                this.updateSpinnerShow(true);
                 PostService.getMedhod(query,"","",skip).then(res => {
                     this.postItems = res.objects
+                    this.updateSpinnerShow(false);
                 })
             }
         }

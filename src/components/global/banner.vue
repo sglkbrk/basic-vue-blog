@@ -10,7 +10,6 @@
                 <div class="text half-to-full">
                   <span class="category mb-5" v-bind:href="pageCategory + bannerItem.metadata.category.slug">{{bannerItem.metadata.category.title}}</span>
                   <div class="post-meta">
-
                     <span v-if="bannerItem.metadata.author.metadata" class="author mr-2"> <img v-bind:src="bannerItem.metadata.author.metadata.authorimg.url"
                         style="margin-right:15px;">{{bannerItem.metadata.author.title}}</span>&bullet;
                     <span class="mr-2">{{ moment(bannerItem.metadata.author.modified_at,).format('MMM DD, YYYY') }}</span> &bullet;
@@ -47,13 +46,6 @@
     },
     methods: {
       getBannerPost: function () {
-        // fetch(this.$serviceUrl+'PostService/getBannerPost ', {
-        //     method: 'GET'
-        // })
-        // .then(response => response.json())
-        // .then(json =>{
-        //     this.bannerItem = json[0];
-        // })
         var query = {
           'type': "posts",
           'metadata.banner': true,

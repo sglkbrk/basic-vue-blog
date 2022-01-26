@@ -8,6 +8,9 @@ import about from './screen/about.vue'
 import searchPost from './screen/searchPost.vue'
 import VueRouter from 'vue-router'
 import config from '../confing/confing.js'
+import store from './store'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 
 import "./assets/css/bootstrap.css";
@@ -24,6 +27,7 @@ Vue.config.productionTip = false
 
 Vue.prototype.$serviceUrl = config.API_URL
 Vue.prototype.$imagesUrl = config.API_URL + 'FileService/downloadFile/'
+Vue.prototype.$spinnerVisible = false ;
 
 const router = new VueRouter({
     mode: 'history',
@@ -41,6 +45,10 @@ const router = new VueRouter({
 })
 
 new Vue({
+    created () {
+        AOS.init()
+     },
     router,
-    render: h => h(App)
+    render: h => h(App),
+    store
 }).$mount('#app')

@@ -8,10 +8,13 @@
             </div>
           <h1 class="mb-4">{{item.title}}</h1>
           <a class="category mb-5" v-bind:href="categoryPage + item.metadata.category.slug"  >{{item.metadata.category.title}}</a> 
+          <a class="subcategory mb-5" v-bind:href="categoryPage + item.metadata.subcategory.slug"  >{{item.metadata.subcategory.title}}</a> 
           <div class="post-content-body" v-html="item.content">
           </div>
           <div class="pt-5">
-            <p>Categories:  <a v-bind:href="categoryPage + item.metadata.category.slug"  >{{item.metadata.category.title}}</a></p>
+            <p v-if="item.metadata.tags">Tags:
+                <a  v-for="tag in item.metadata.tags" v-bind:key="tag.id"  v-bind:href="categoryPage + tag.slug"  >{{tag.title}}</a>
+            </p>
           </div>
 
         <components v-bind:postid="item.slug" ></components>    
@@ -23,6 +26,7 @@
     import * as moment from 'moment'
     import components from "./comments.vue"
     import PostService from "../../../service/PostService"
+    import {mapActions } from 'vuex';
     export default {
         name: 'contentTop',
         components: {
@@ -41,14 +45,19 @@
             this.moment.locale('tr');
         },
         methods:{
+          ...mapActions([
+            'updateSpinnerShow'
+          ]),
           getData:function function_name() {
               var params = this.$route.params
               if (!params.id) return;
               var query = {
                 slug:params.id
               }
+              this.updateSpinnerShow(true);
               PostService.getMedhod(query).then(res =>{
-                  this.item = res.objects[0]
+                  this.item = res.objects[0];
+                  this.updateSpinnerShow(false);
               })
           },
           setSizePost:function () {

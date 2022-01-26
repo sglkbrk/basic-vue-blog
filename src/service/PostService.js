@@ -19,9 +19,16 @@ var PostService =  {
                 resolve(res)
             })
         });
+    },
+    getTrace(){
+        return new Promise((resolve) => {
+            fetch("https://www.cloudflare.com/cdn-cgi/trace" , {
+                method: 'GET'
+            })
+            .then(json =>{
+                resolve(json);
+            })
+        });
     }
 }
 export default PostService;
-// module.exports = {
-//     PostService: PostService
-// }

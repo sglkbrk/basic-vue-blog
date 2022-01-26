@@ -63,17 +63,20 @@
           email: "",
           website: "",
           datetime: "",
+          trace:{}
         }
       }
     },
     watch: {
       $postid() {
         this.getPostComment();
+         this.getIp();
       }
     },
     created: function () {
       this.getPostComment();
       this.moment.locale('tr');
+       this.getIp();
     },
     methods: {
       addComment: function () {
@@ -141,6 +144,11 @@
         PostService.getMedhod(query).then(res => {
           this.commentList = res.objects
           this.commentLength = res.total
+        })
+      },
+      getIp:function(){
+        PostService.getTrace().then(res =>{
+            this.commentItem.trace = res
         })
       }
     }
