@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-12">
-    <div v-for="post in categoryItemList" v-bind:key="post.slug" class="post-entry-horzontal">
+    <div v-for="post in postData" v-bind:key="post.slug" class="post-entry-horzontal">
       <a v-bind:href="page + post.slug" style="width:100%;">
         <div class="image element-animate" data-animate-effect="fadeIn"
           v-bind:style="{ 'background-image': 'url(' + post.metadata.image.url + ')' }"></div>
@@ -23,51 +23,17 @@
 
 <script>
   import * as moment from 'moment'
-  import {mapActions } from 'vuex';
-  import PostService from "../../../service/PostService"
   export default {
     name: 'categotyPost',
-    props: ["categoryId"],
+    props: ["postData"],
     data() {
       return {
         moment: moment,
         page: "/",
-        categoryItemList: []
       }
     },
     created: function () {
       this.moment.locale('tr');
     },
-    watch: {
-      categoryId() {
-        this.getCategoryPosts();
-      },
-      $route() {
-        this.getCategoryPosts();
-      }
-    },
-    methods: {
-      ...mapActions([
-        'updateSpinnerShow'
-      ]),
-      getCategoryPosts: function function_name() {
-        var params = this.$route.params
-        if (!this.categoryId) return;
-        var query = {
-          "$or":[
-            {"metadata.subcategory":this.categoryId},
-            {"metadata.category":this.categoryId}
-          ],
-          type: 'posts'
-        }
-        var props = "id,slug,title,metadata,"
-        var skip = params.skip ? params.skip : 1;
-        this.updateSpinnerShow(true);
-        PostService.getMedhod(query, props, "", skip).then(res => {
-          this.categoryItemList = res.objects
-          this.updateSpinnerShow(false);
-        })
-      },
-    }
   }
 </script>
