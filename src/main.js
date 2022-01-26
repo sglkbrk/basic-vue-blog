@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App'
-import detay from './screen/detay.vue'
+import detail from './screen/detail.vue'
 import home from './screen/home.vue'
 import category from './screen/category.vue'
 import contact from './screen/contact.vue'
@@ -39,7 +39,7 @@ const router = new VueRouter({
         {path: '/searchPost/:text', component: searchPost},
         {path: '/', component: home},
         {path: '/page/:skip', component: home},
-        {path: '/:id', component: detay},
+        {path: '/:id', component: detail},
         // {path: '/yazi-detay/:id', component: PostDetail}
     ]
 })
