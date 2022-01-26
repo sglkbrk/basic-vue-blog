@@ -3,7 +3,6 @@ import App from './App'
 import detay from './screen/detay.vue'
 import home from './screen/home.vue'
 import category from './screen/category.vue'
-import tags from './screen/tags.vue'
 import contact from './screen/contact.vue'
 import about from './screen/about.vue'
 import searchPost from './screen/searchPost.vue'
@@ -33,15 +32,14 @@ Vue.prototype.$spinnerVisible = false ;
 const router = new VueRouter({
     mode: 'history',
     routes: [
+        {path: '/contact/', component: contact},
+        {path: '/about/', component: about},
+        {path: '/category/:id', component: category},
+        {path: '/category/:id/:skip', component: category},
+        {path: '/searchPost/:text', component: searchPost},
         {path: '/', component: home},
         {path: '/page/:skip', component: home},
         {path: '/:id', component: detay},
-        {path: '/category/:id', component: category},
-        {path: '/category/:id/:skip', component: category},
-        {path: '/tags/:id', component: tags},
-        {path: '/contact', component: contact},
-        {path: '/about', component: about},
-        {path: '/searchPost/:text', component: searchPost},
         // {path: '/yazi-detay/:id', component: PostDetail}
     ]
 })

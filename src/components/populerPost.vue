@@ -21,7 +21,7 @@
 
 <script>
   import * as moment from 'moment'
-  import PostService from "../../service/PostService"
+  import PostService from "../service/PostService"
   export default {
     name: 'populerPost',
     data(){

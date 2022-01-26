@@ -7,7 +7,7 @@
 
 <script>
     import { mapState, mapGetters } from 'vuex';
-    import semipolarSpinner from "./components/global/semipolarSpinner.vue"
+    import semipolarSpinner from "./components/semipolarSpinner.vue"
     export default {
         name: 'app',
         computed:{

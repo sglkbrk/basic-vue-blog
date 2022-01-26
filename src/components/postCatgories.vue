@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import PostService from "../../service/PostService"
+    import PostService from "../service/PostService"
   export default {
     name: 'postCatgories',
     data(){

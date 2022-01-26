@@ -31,8 +31,8 @@
 
 
 <script>
-  import PostService from "../../../service/PostService"
-  import dotsSpinner from '../../global/dotsSpinner.vue'
+  import PostService from "../service/PostService"
+  import dotsSpinner from './dotsSpinner.vue'
   export default {
     name: 'sendMail',
     components:{

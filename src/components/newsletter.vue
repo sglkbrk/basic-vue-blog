@@ -15,7 +15,7 @@
                 <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'" >
               </div>
             </div>
-            <a href="#" class="bbtns">Subcribe</a>
+            <!-- <a href="#" class="bbtns">Subcribe</a> -->
         </div>  
         <p class="text-bottom">
             You can unsubscribe at any time

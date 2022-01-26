@@ -39,14 +39,14 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="/about">Galery</a>
+                  <a class="nav-link" href="/about/">Galery</a>
                 </li>
                 
                 <li class="nav-item">
-                  <a class="nav-link" href="/about">Hakkımda</a>
+                  <a class="nav-link" href="/about/">Hakkımda</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/contact">İletişim</a>
+                  <a class="nav-link" href="/contact/">İletişim</a>
                 </li>
               </ul>
               
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import PostService from "../../service/PostService"
+  import PostService from "../service/PostService"
   export default {
     name: 'header',
     data() {

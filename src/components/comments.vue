@@ -4,7 +4,7 @@
     <ul class="comment-list">
       <li v-for="comment in commentList" v-bind:key="comment.id" class="comment">
         <div class="vcard">
-          <img src="../../../assets/images/defaultUser.png">
+          <img src="../assets/images/defaultUser.png">
         </div>
         <div class="comment-body">
           <h3>{{comment.metadata.name}}</h3>
@@ -46,7 +46,7 @@
 
 <script>
   import * as moment from 'moment'
-  import PostService from "../../../service/PostService"
+  import PostService from "../service/PostService"
   export default {
     name: 'comment',
     props: ["postid"],

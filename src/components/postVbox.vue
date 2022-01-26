@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div v-for="item in postItems" v-bind:key="item.slug" class="col-md-6">
+        <div v-for="item in postData" v-bind:key="item.slug" class="col-md-6">
             <a v-bind:href="page + item.slug" class="blog-entry element-animate" data-animate-effect="fadeIn">
                 <img v-bind:src="item.metadata.image.url" style="">
                 <div class="blog-content-body">
@@ -20,42 +20,16 @@
 </template>
 <script>
     import * as moment from 'moment'
-    import {mapActions } from 'vuex';
-    import PostService from "../../../service/PostService"
     export default {
         name: 'post',
+        props: ["page","postData"],
         data() {
             return {
-                page: "/",
                 moment: moment,
-                postItems: []
-            }
-        },
-        watch: {
-            $route() {
-                this.getData();
             }
         },
         created: function () {
-            this.getData();
             this.moment.locale('tr');
         },
-        methods: {
-            ...mapActions([
-                'updateSpinnerShow'
-            ]),
-            getData: function function_name() {
-                var params = this.$route.params
-                var skip = params.skip ? params.skip : 1;
-                var query = {
-                    'type': "posts",
-                }
-                this.updateSpinnerShow(true);
-                PostService.getMedhod(query,"","",skip).then(res => {
-                    this.postItems = res.objects
-                    this.updateSpinnerShow(false);
-                })
-            }
-        }
     }
 </script>
