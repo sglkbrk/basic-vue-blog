@@ -13,8 +13,7 @@
           <div class="row mb-5 mt-5">
             <postHbox  v-bind:postData="postItems" ></postHbox>
           </div>
-          <postCatgPagination serviceName="PostService" methodName="getAllPostCategoryCount"
-            v-bind:categoryId="categoryItem.id"></postCatgPagination>
+          <pagination page="/category/"  v-bind:query="pagQuery"></pagination>
         </div>
         <div class="col-md-12 col-lg-4 sidebar">
           <searhPost></searhPost>
@@ -33,7 +32,7 @@
   import postCatgories from "../global/postCatgories.vue"
   import populerPost from "../global/populerPost.vue"
   import sidebarWidgets from "../global/sidebarWidgets.vue"
-  import postCatgPagination from "./content/postCatgPagination.vue"
+  import pagination from "../global/pagination.vue"
   import PostService from "../../service/PostService"
   import {mapActions } from 'vuex';
   export default {
@@ -42,14 +41,15 @@
       postCatgories,
       populerPost,
       sidebarWidgets,
-      postCatgPagination,
+      pagination,
       searhPost,
       postHbox
     },
     data() {
       return {
         categoryItem: {},
-        postItems: []
+        postItems: [],
+        pagQuery:{}
       }
     },
     created: function () {
@@ -92,6 +92,10 @@
         PostService.getMedhod(query).then(res => {
           this.categoryItem = res.objects[0]
           this.getCategoryPosts(this.categoryItem.id);
+          this.pagQuery = {
+              'metadata.subcategory':this.categoryItem.id, 
+              type:'posts'
+          }
         })
       }
     }

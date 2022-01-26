@@ -18,15 +18,23 @@
 <script>
   import PostService from "../../service/PostService"
   export default {
-    name: 'blogPagination',
-    props: ["serviceName", "methodName"],
+    name: 'postCatgPagination',
+    props: ["page","query"],
     data() {
       return {
         paginationList: []
       }
     },
-    created: function () {
-      this.getData();
+    watch: {
+      page() {
+        this.getData();
+      },
+      query() {
+        this.getData();
+      }
+    },
+    created(){
+        this.getData();
     },
     computed: {
       getparam: function () {
@@ -37,7 +45,8 @@
       routering: function (url) {
         var params = this.$route.params
         if (params.skip == url) return
-        this.$router.push('/page/' + url);
+        if(params.id)   this.$router.push('/category/' + params.id + '/' + url);
+        else  this.$router.push(this.page + url);
         window.scrollTo(0, 0);
       },
       backpage: function () {
@@ -52,11 +61,9 @@
         this.routering(url)
       },
       getData: function () {
-        var query = {
-          'type': "posts",
-        }
+        if (!this.query.type ||  this.paginationList.length) return;
         var props = "id"
-        PostService.getMedhod(query,props).then(res => {
+        PostService.getMedhod(this.query, props).then(res => {
           var pp = 1;
           for (var i = 0; i < res.total; i = i + 6) {
             this.paginationList.push(pp);
