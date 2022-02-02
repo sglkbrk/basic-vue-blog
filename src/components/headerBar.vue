@@ -16,7 +16,7 @@
             <div class="collapse navbar-collapse" id="navbarMenu">
               <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                  <a class="nav-link active" href="/">AnaSayfa</a>
+                  <a v-bind:class="this.getActivePath('/')" href="/">AnaSayfa</a>
                 </li>
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="#">Yazılım</a>
@@ -39,14 +39,14 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="/about/">Galery</a>
+                  <a v-bind:class="this.getActivePath('/gallery/')" href="/gallery/">Galery</a>
                 </li>
                 
                 <li class="nav-item">
-                  <a class="nav-link" href="/about/">Hakkımda</a>
+                  <a v-bind:class="this.getActivePath('/about/')" href="/about/">Hakkımda</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/contact/">İletişim</a>
+                  <a v-bind:class="this.getActivePath('/contact/')" href="/contact/">İletişim</a>
                 </li>
               </ul>
               
@@ -69,18 +69,24 @@
       };
     },
     methods:{
-        onMobilHeader:function () {
+        onMobilHeader () {
              var deneme = document.getElementById("navbarMenu");
              if (deneme.className == "collapse navbar-collapse") deneme.className = "navbar-collapse";
              else deneme.className = "collapse navbar-collapse"
         },
-        getData:function () {
+        getData () {
           var query = {
             'type':"subcategorys", 
           }
           PostService.getMedhod(query).then(res =>{
               this.categoryList = res.objects
           })
+        },
+        getActivePath(path){
+          var currentpage = this.$router.currentRoute.path;
+          if(currentpage == path ) return "nav-link active"
+          else if(currentpage.includes(path)) return "nav-link active"
+          else return "nav-link"
         }
     },
     created: function () {

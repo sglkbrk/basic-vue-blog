@@ -47,6 +47,9 @@
 <script>
   import * as moment from 'moment'
   import PostService from "../service/PostService"
+  import {
+    mapActions
+  } from 'vuex';
   export default {
     name: 'comment',
     props: ["postid"],
@@ -79,6 +82,9 @@
        this.getIp();
     },
     methods: {
+      ...mapActions([
+          'updateSpinnerShow'
+      ]),
       addComment: function () {
         var params = this.$route.params;
         if (params.id && this.commentItem.name && this.commentItem.message && this.commentItem.email) {
@@ -124,6 +130,7 @@
               }
             ]
           }
+          this.updateSpinnerShow(true);
           PostService.postMedhod(json).then(res => {
             if (res && res.object && res.object.id) {
               this.commentItem.message = "";
@@ -131,6 +138,7 @@
               this.commentItem.email = "";
               this.commentItem.website = "";
               alert("Yorumunuz Onaylandıktan Sonra Yayınlanacak")
+              this.updateSpinnerShow(false);
             }
           })
         } else alert("İşaretli Alanları doldurunuz.")

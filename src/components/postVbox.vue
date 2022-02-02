@@ -1,8 +1,8 @@
 <template>
     <div class="row">
         <div v-for="item in postData" v-bind:key="item.slug" class="col-md-6">
-            <a v-bind:href="page + item.slug" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                <img v-bind:src="item.metadata.image.url" style="">
+            <a v-bind:href="page + item.slug" class="blog-entry element-animate postBox" data-animate-effect="fadeIn">
+                <img v-bind:src="item.metadata.image.url" class="postBoximages">
                 <div class="blog-content-body">
                     <div class="post-meta">
                         <span v-if="item.metadata.author.metadata && item.metadata.author.metadata.authorimg" class="author mr-2"><img v-bind:src="item.metadata.author.metadata.authorimg.imgix_url"

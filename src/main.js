@@ -4,14 +4,12 @@ import detail from './screen/detail.vue'
 import home from './screen/home.vue'
 import category from './screen/category.vue'
 import contact from './screen/contact.vue'
+import gallery from './screen/gallery.vue'
 import about from './screen/about.vue'
 import searchPost from './screen/searchPost.vue'
 import VueRouter from 'vue-router'
 import config from '../confing/confing.js'
 import store from './store'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-
 
 import "./assets/css/bootstrap.css";
 import "./assets/css/animate.css";
@@ -20,6 +18,8 @@ import "./assets/css/style.css";
 import "./assets/fonts/ionicons/css/ionicons.min.css";
 import "./assets/fonts/fontawesome/css/font-awesome.min.css";
 import "./assets/fonts/flaticon/font/flaticon.css";
+import "./assets/css/genaral.css";
+
 
 Vue.use(VueRouter)
 
@@ -34,6 +34,7 @@ const router = new VueRouter({
     routes: [
         {path: '/contact/', component: contact},
         {path: '/about/', component: about},
+        {path: '/gallery/', component: gallery},
         {path: '/category/:id', component: category},
         {path: '/category/:id/:skip', component: category},
         {path: '/searchPost/:text', component: searchPost},
@@ -45,9 +46,6 @@ const router = new VueRouter({
 })
 
 new Vue({
-    created () {
-        AOS.init()
-     },
     router,
     render: h => h(App),
     store

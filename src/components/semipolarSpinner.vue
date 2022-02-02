@@ -19,7 +19,6 @@
       width: 100px;
       position: relative;
       margin: auto;
-      margin-top:50%; 
     }
 
     .semipolar-spinner .ring {

@@ -19,7 +19,7 @@
   import PostService from "../service/PostService"
   export default {
     name: 'postCatgPagination',
-    props: ["page","query"],
+    props: ["page","query","slcTagId"],
     data() {
       return {
         paginationList: []
@@ -47,7 +47,7 @@
         if (params.skip == url) return
         if(params.id)   this.$router.push('/category/' + params.id + '/' + url);
         else  this.$router.push(this.page + url);
-        window.scrollTo(0, 0);
+        this.scrollToSection(this.slcTagId)
       },
       backpage: function () {
         var params = this.$route.params
@@ -65,11 +65,24 @@
         var props = "id"
         PostService.getMedhod(this.query, props).then(res => {
           var pp = 1;
-          for (var i = 0; i < res.total; i = i + 6) {
+          for (var i = 0; i < res.total; i = i + 7) {
             this.paginationList.push(pp);
             pp++;
           }
         })
+      },
+      scrollToSection(id, force = false) {
+          if (this.inMove && !force) return false;
+          this.activeSection = id;
+          this.inMove = true;
+          if(document.getElementById(id)) {
+            document.getElementById(id).scrollIntoView({
+                behavior: 'smooth'
+            });
+          }
+          setTimeout(() => {
+              this.inMove = false;
+          }, 400);
       }
     }
   }

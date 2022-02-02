@@ -4,8 +4,8 @@ var PostService =  {
     getMedhod(query,props,cache,skip) {
         var limit = ""
         if(skip){
-            skip = (skip - 1) * 5
-            limit = skip + 5
+            skip = (skip - 1) * 6
+            limit = skip + 6
         }  
         return new Promise((resolve) => {
             Provider.get("https://api.cosmicjs.com/v2/buckets",query,props,cache,skip,limit).then(res=>{

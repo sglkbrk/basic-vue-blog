@@ -3,17 +3,17 @@
     <div class="wrap">
         <headerBar> </headerBar>
         <banner></banner>
-        <section class="site-section py-sm">
+        <section id="home-section" class="site-section py-sm">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2 style="marginTop:5px" class="mb-4">Tüm İçerikler</h2>
+                        <h2 style="marginTop:5px" class="mb-4 animate__animated animate__bounce ">Son İçerikler</h2>
                     </div>
                 </div>
                 <div class="row blog-entries">
                     <div class="col-md-12 col-lg-8 main-content">
                         <postVbox page="/" v-bind:postData="postData"> </postVbox>
-                        <pagination page="/page/" v-bind:query="pagQuery"></pagination>
+                        <pagination slcTagId="home-section" page="/page/" v-bind:query="pagQuery"></pagination>
                     </div>
                     <div class="col-md-12 col-lg-4 sidebar">
                         <searhPost></searhPost>
@@ -73,7 +73,6 @@ export default {
     },
     created: function () {
         this.getPostData();
-        this.moment.locale('tr');
     },
     methods: {
         ...mapActions([

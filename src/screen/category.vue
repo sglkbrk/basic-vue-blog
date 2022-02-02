@@ -2,7 +2,7 @@
   <div id="home">
     <div class="wrap">
       <headerBar> </headerBar>
-      <section class="site-section py-sm">
+      <section id="category-section" class="site-section py-sm">
         <div class="container" style="margin-top: 100px;">
           <div class="row mb-4">
             <div class="col-md-6">
@@ -16,7 +16,7 @@
               <div class="row mb-5 mt-5">
                 <postHbox v-bind:postData="postItems"></postHbox>
               </div>
-              <pagination page="/category/" v-bind:query="pagQuery"></pagination>
+              <pagination slcTagId="category-section" page="/category/" v-bind:query="pagQuery"></pagination>
             </div>
             <div class="col-md-12 col-lg-4 sidebar">
               <searhPost></searhPost>

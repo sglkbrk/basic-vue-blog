@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
-      <router-view v-show="!getSpinnerShow" />
-      <semipolarSpinner v-show="getSpinnerShow" />
-  </div>
+  <v-app  id="app">
+      <router-view  v-bind:class="getSpinnerShow ? 'bg-image' : '' " />
+      <div v-show="getSpinnerShow"  class="bg-text">
+           <semipolarSpinner />
+      </div>
+  </v-app>
 </template>
 
 <script>
@@ -23,4 +25,3 @@
         },
     }
 </script>
-
